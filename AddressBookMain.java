@@ -1,5 +1,6 @@
 package addressbook;
 
+import java.sql.Struct;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -53,20 +54,28 @@ public class AddressBookMain {
             System.out.println("Are you done? 0 for no, 1 for yes: ");
             done = sc.nextInt();
     
-        }while(done!= 1);
+        }while(done==0);
 
         //Display the book
         addressBook.displayBook();
 
-
+        String find_name;
+        String new_name;
         //Edit contact
         System.out.println("Enter the Contact name to change: ");
-        String find_name = sc.nextLine();
+        find_name = sc.nextLine();
         
         System.out.println("Enter the new name: ");
-        String new_name = sc.nextLine();
+        new_name = sc.nextLine();
 
         addressBook.editContact(find_name, new_name);
+        addressBook.displayBook();
+
+        //Delete contact 
+        System.out.println("Enter the name of the contact to delete: ");
+        String del_name = sc.nextLine();
+
+        addressBook.deleteContact(del_name);
         addressBook.displayBook();
         
 

@@ -48,4 +48,19 @@ public class AddressBook {
         }
 
     }
+
+    public void deleteContact(String name)
+    {
+        for(int i=0; i<contactList.size(); i++)
+        {
+            Contact c = contactList.get(i);
+
+            if(c.first_name.equals(name))
+            {
+                contactList.remove(i);
+                break;
+            }
+
+        }
+    }
 }
