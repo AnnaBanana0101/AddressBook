@@ -1,6 +1,5 @@
 package addressbook;
 
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -57,6 +56,17 @@ public class AddressBookMain {
         }while(done!= 1);
 
         //Display the book
+        addressBook.displayBook();
+
+
+        //Edit contact
+        System.out.println("Enter the Contact name to change: ");
+        String find_name = sc.nextLine();
+        
+        System.out.println("Enter the new name: ");
+        String new_name = sc.nextLine();
+
+        addressBook.editContact(find_name, new_name);
         addressBook.displayBook();
         
 
