@@ -8,7 +8,7 @@ public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Management!");
 
-        Scanner sc = new Scanner(System.in);
+        
         AddressBook addressBook = new AddressBook();
 
 
@@ -24,6 +24,9 @@ public class AddressBookMain {
 
         do
         {
+
+            Scanner sc = new Scanner(System.in);
+
             System.out.println("Enter First Name: ");
             first_name = sc.nextLine();
 
@@ -59,21 +62,24 @@ public class AddressBookMain {
         //Display the book
         addressBook.displayBook();
 
+        Scanner sc1 = new Scanner(System.in);
         String find_name;
         String new_name;
         //Edit contact
         System.out.println("Enter the Contact name to change: ");
-        find_name = sc.nextLine();
+        find_name = sc1.nextLine();
+        System.out.println(find_name);
         
         System.out.println("Enter the new name: ");
-        new_name = sc.nextLine();
+        new_name = sc1.nextLine();
+        System.out.println(new_name);
 
         addressBook.editContact(find_name, new_name);
         addressBook.displayBook();
 
         //Delete contact 
         System.out.println("Enter the name of the contact to delete: ");
-        String del_name = sc.nextLine();
+        String del_name = sc1.nextLine();
 
         addressBook.deleteContact(del_name);
         addressBook.displayBook();
