@@ -1,5 +1,12 @@
 package addressbook;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Struct;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -82,6 +89,21 @@ public class AddressBookMain {
             //Display the book
             addressBook.displayBook();
 
+            //Create and save to file
+            String filepath = "Book2.txt";
+            createFile(filepath);
+            
+            for(Contact contact: addressBook.contactList)
+            {
+                writeToFile(filepath, "Name: "+ first_name + " " + last_name);
+                writeToFile(filepath, "Email: " + email);
+                writeToFile(filepath, "Number: " + phone_number);
+                writeToFile(filepath, "Address: " + address);
+                writeToFile(filepath, "City: " + city);
+                writeToFile(filepath, "State: " + state);
+                writeToFile(filepath, "ZIP: " + zip);
+            }
+
             addressBooksDict.put(bookName, addressBook); //Add the new address book to the Dictionary
 
             Scanner sc1 = new Scanner(System.in);
@@ -120,4 +142,45 @@ public class AddressBookMain {
         System.out.println(addressBooksDict);    
 
     }
+
+    public static void createFile(String filepath)
+    {
+        try {
+            Path path = Path.of(filepath);
+            if(!Files.exists(path)){
+                Files.createFile(path);
+                System.out.println("Files created: " +filepath);
+            } else {
+                System.out.println("File Already Exists: " + filepath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeToFile(String filepath, String data)
+    {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath,true))){
+            writer.write(data);
+            writer.newLine();
+            System.out.println("Data Added");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void readFromFile(String filepath)
+    {
+        String line;
+        try(BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+            while((line = reader.readLine())!=null)
+            {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    
 }
